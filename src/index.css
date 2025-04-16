@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Base styles for nav links */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 0 1rem;
+  font-weight: 500;
+  color: #6b7280; /* Gray-500 */
+  transition: color 0.2s ease;
+}
+
+/* Hover state */
+.nav-link:hover {
+  color: #4f46e5; /* Indigo-600 */
+}
+
+/* Underline effect using ::after pseudo-element */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #4f46e5; /* Indigo-600 */
+  transition: width 0.3s ease;
+}
+
+/* Expand underline on hover */
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active state - for the currently selected page */
+.nav-link.active {
+  color: #4f46e5; /* Indigo-600 */
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
