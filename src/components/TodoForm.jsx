@@ -6,12 +6,12 @@ const TodoForm = () => {
     gsap.from(".todoForm", {
       y: 100,
       opacity: 0,
-      duration: 1,
+      duration: 0.75,
       ease: "power2.inOut",
     });
   }, {});
   return (
-    <div className="mt-20 w-[600px] bg-white shadow-md rounded-xl flex gap-4 todoForm">
+    <div className="mt-20 w-[80%] md:w-[600px] bg-white shadow-md rounded-xl flex gap-4 todoForm">
       <input
         type="text"
         className="w-full outline-none p-4 flex-1 rounded-xl"
