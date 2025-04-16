@@ -5,7 +5,7 @@ const ManageTodo = () => {
   return (
     <div className="flex w-full h-screen items-center flex-col">
       <TodoForm />
-      <TodoItems />
+      {/* <TodoItems /> */}
     </div>
   );
 };
