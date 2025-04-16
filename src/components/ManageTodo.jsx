@@ -28,6 +28,8 @@ const ManageTodo = () => {
       )
     );
   };
+
+  console.log(todos);
   return (
     <TodoProvider value={{ addTodo, updateTodo, deleteTodo, toggleCompleted }}>
       <div className="flex w-full h-screen items-center flex-col">

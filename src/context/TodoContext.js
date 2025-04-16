@@ -8,7 +8,7 @@ const TodoContext = createContext({
 });
 
 export const useTodo = () => {
-  useContext(TodoContext);
+  return useContext(TodoContext);
 };
 
 export const TodoProvider = TodoContext.Provider;
