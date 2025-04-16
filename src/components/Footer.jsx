@@ -18,7 +18,7 @@ const Footer = () => {
           <i className="fa-brands fa-github cursor-pointer hover:text-indigo-600 transition-colors"></i>
         </div>
       </div>
-      <div className="text-center text-lg gray-500">
+      <div className="text-center text-lg text-gray-500">
         &copy; {currentYear} Focus Todo. All rights reserved
       </div>
     </footer>
