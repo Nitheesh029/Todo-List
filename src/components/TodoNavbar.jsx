@@ -6,14 +6,17 @@ function TodoNavbar() {
     {
       id: 1,
       title: "Manage Todos",
+      url: "/",
     },
     {
       id: 2,
       title: "Completed",
+      url: "completed",
     },
     {
       id: 3,
       title: "Pending",
+      url: "pending",
     },
   ];
   return (
@@ -25,7 +28,7 @@ function TodoNavbar() {
       <div className="hidden md:flex gap-7">
         {menus.map((menu) => (
           <a
-            href="#"
+            href={menu.url}
             className="cursor-pointer nav-link text-lg relative"
             key={menu.id}
           >
