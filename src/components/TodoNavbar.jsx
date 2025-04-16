@@ -49,9 +49,12 @@ function TodoNavbar() {
           <div className="flex gap-10 py-3 absolute right-0 top-[65px] bg-white w-full justify-center border-t-2 border-slate-300">
             {menus.map((menu) => (
               <a
-                href="#"
+                href={menu.url}
                 className="cursor-pointer text-lg relative hover:text-indigo-700 transition-colors text-slate-600 font-semibold"
                 key={menu.id}
+                onClick={() => {
+                  setShowMenu(!showMenu);
+                }}
               >
                 {menu.title}
               </a>
