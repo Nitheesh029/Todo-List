@@ -1,28 +1,64 @@
-import React from "react";
-import dayjs from "dayjs";
-const TodoItems = ({ todos }) => {
-  const currentDate = dayjs().format("MMMM D, YYYY");
+import React, { useState, useEffect } from "react";
+
+import { Trash2 } from "lucide-react";
+import { useTodo } from "../context";
+const TodoItems = ({ todo }) => {
+  const { deleteTodo, updateTodo, toggleCompleted } = useTodo();
+
+  const [isEditable, setIsEditable] = useState(true);
+  const [todoMsg, setTodoMsg] = useState(todo.todo);
+
+  const edit = () => {};
 
   return (
-    <div className="w-[70%] md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 max-h-[700px] overflow-y-auto h-[400px] rounded-xl shadow-lg p-4">
-      <p className="text-gray-700 font-medium text-lg mb-4 flex items-center gap-2">
-        <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-md">
-          {currentDate}
-        </span>
-      </p>
-      <div className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full px-4 py-2.5 flex items-center justify-between gap-3 rounded-md">
-        <input
-          type="checkbox"
-          class="w-5 h-5 rounded-md cursor-pointer transition-all"
-        />
-        <p className="flex-1">Learn React</p>
-        <button>
-          <i class="fa-solid fa-trash hover:text-indigo-500 transition-colors"></i>
-        </button>
-        <button>
-          <i class="fa-solid fa-pencil hover:text-indigo-500 transition-colors"></i>
-        </button>
-      </div>
+    <div
+      className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full px-4 py-2.5 flex items-center justify-between gap-3 rounded-md"
+      key={todo.id}
+    >
+      <input
+        type="checkbox"
+        className="w-5 h-5 rounded-md cursor-pointer transition-all"
+      />
+      <input
+        type="text"
+        className="flex-1 bg-transparent px-2 outline-none"
+        value={todoMsg}
+        readOnly={isEditable}
+        onChange={(e) => {
+          setTodoMsg(e.target.value);
+        }}
+      />
+      <button
+        className=" hover:text-indigo-500 transition-colors"
+        onClick={() => {
+          deleteTodo(todo.id);
+        }}
+      >
+        <Trash2 />
+      </button>
+      <button onClick={edit}>
+        <svg
+          className="w-5 h-5 hover:text-indigo-500 transition-colors"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.862 4.487L18.549 2.799C18.9007 2.44733 19.3777 2.24976 19.875 2.24976C20.3723 2.24976 20.8493 2.44733 21.201 2.799C21.5527 3.15068 21.7502 3.62766 21.7502 4.125C21.7502 4.62234 21.5527 5.09932 21.201 5.451L7.636 19.016C7.1743 19.4778 6.61501 19.832 5.995 20.054L3 21L3.946 18.005C4.168 17.385 4.522 16.826 4.984 16.364L16.862 4.487Z"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M15 6L18 9"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
     </div>
   );
 };
