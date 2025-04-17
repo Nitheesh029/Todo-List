@@ -10,8 +10,10 @@ const TodoItems = ({ todo }) => {
   const [isCompleted, setIsCompleted] = useState(false);
 
   const edit = () => {
-    setIsEditable(!isEditable);
-    updateTodo(todo.id, { ...todo, todo: todoMsg });
+    if (!isCompleted) {
+      setIsEditable(!isEditable);
+      updateTodo(todo.id, { ...todo, todo: todoMsg });
+    }
   };
 
   return (
