@@ -30,7 +30,7 @@ const TodoItems = ({ todo }) => {
       />
       <input
         type="text"
-        className={`flex-1 bg-transparent px-2 outline-none truncate text-sm sm:text-base ${
+        className={` bg-transparent px-2 outline-none truncate text-sm sm:text-base ${
           isCompleted ? "line-through" : ""
         }`}
         value={todoMsg}
