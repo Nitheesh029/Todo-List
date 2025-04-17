@@ -7,7 +7,10 @@ const ManageTodo = () => {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    setTodos((prev) => [{ id: Date.now(), ...todo }, ...prev]);
+    setTodos((prev) => [
+      { id: Date.now(), ...todo, date: currentDate },
+      ...prev,
+    ]);
   };
 
   const updateTodo = (id, todo) => {
@@ -34,15 +37,32 @@ const ManageTodo = () => {
   useEffect(() => {
     setIsTodoEmpty(todos.length === 0);
   }, [todos]);
-  const currentDate = dayjs().format("MMMM D, YYYY");
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos"));
+    if (storedTodos && storedTodos.length > 0) {
+      const currentDateFormatted = dayjs().format("MMMM D, YYYY");
+      const todosForToday = storedTodos.filter(
+        (todo) => todo.date === currentDateFormatted
+      );
+      setTodos(todosForToday);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   console.log(todos);
+
+  const currentDate = dayjs().format("MMMM D, YYYY");
   return (
     <TodoProvider
       value={{ addTodo, updateTodo, deleteTodo, toggleCompleted, todos }}
     >
       <div className="flex w-full h-screen items-center flex-col">
         <TodoForm />
-        <div className="w-[70%] md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 max-h-[700px] rounded-xl shadow-lg p-4 flex flex-col gap-2">
+        <div className="w-[90%] md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 max-h-[700px] rounded-xl shadow-lg p-4 flex flex-col gap-2">
           <p className="text-gray-700 font-medium text-lg mb-4 flex items-center gap-2">
             <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-md">
               {currentDate}

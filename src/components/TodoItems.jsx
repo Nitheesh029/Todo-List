@@ -16,7 +16,7 @@ const TodoItems = ({ todo }) => {
 
   return (
     <div
-      className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full px-4 py-2.5 flex items-center justify-between gap-3 rounded-md"
+      className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full px-4 py-2.5 flex flex-wrap sm:flex-nowrap items-center gap-3 rounded-md"
       key={todo.id}
     >
       <input

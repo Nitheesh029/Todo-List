@@ -21,7 +21,7 @@ const TodoForm = () => {
     setTodoMsg("");
   };
   return (
-    <div className="mt-20 w-[80%] md:w-[600px] lg:w-[700px] xl:w-[800px] bg-white shadow-md rounded-xl flex gap-4 todoForm">
+    <div className="mt-20 w-[90%] md:w-[600px] lg:w-[700px] xl:w-[800px] bg-white shadow-md rounded-xl flex gap-4 todoForm">
       <input
         type="text"
         className="w-full outline-none p-4 flex-1 rounded-xl"
