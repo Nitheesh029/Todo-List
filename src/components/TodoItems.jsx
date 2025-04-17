@@ -39,7 +39,7 @@ const TodoItems = ({ todo }) => {
           setTodoMsg(e.target.value);
         }}
       />
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+      <div className="flex items-center">
         <button
           className="hover:text-indigo-500 transition-colors p-1 flex-shrink-0"
           onClick={() => {
