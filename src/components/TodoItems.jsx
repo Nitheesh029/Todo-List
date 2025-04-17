@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Trash2, pen } from "lucide-react";
+import { Trash2, Pen } from "lucide-react";
 import { useTodo } from "../context";
 const TodoItems = ({ todo }) => {
   const { deleteTodo, updateTodo, toggleCompleted } = useTodo();
@@ -16,7 +16,7 @@ const TodoItems = ({ todo }) => {
 
   return (
     <div
-      className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full px-4 py-2.5 flex items-center gap-2 rounded-md"
+      className="border-2 bg-gray-500/10 text-black backdrop-blur-lg text-lg w-full md:px-4 px-2 py-2.5 flex items-center gap-2 rounded-md"
       key={todo.id}
     >
       <input
@@ -30,16 +30,16 @@ const TodoItems = ({ todo }) => {
       />
       <input
         type="text"
-        className={` bg-transparent px-2 outline-none truncate text-sm sm:text-base ${
+        className={` bg-transparent px-2 outline-none truncate text-sm sm:text-base flex-1 ${
           isCompleted ? "line-through" : ""
-        }`}
+        } ${isEditable ? "" : "ring-2 ring-black"}`}
         value={todoMsg}
         readOnly={isEditable}
         onChange={(e) => {
           setTodoMsg(e.target.value);
         }}
       />
-      <div className="flex items-center gap-1">
+      <div className="flex items-center md:gap-3 gap-0.5">
         <button
           className="hover:text-indigo-500 transition-colors p-1 flex-shrink-0"
           onClick={() => {
@@ -47,14 +47,14 @@ const TodoItems = ({ todo }) => {
           }}
           aria-label="Delete todo"
         >
-          <Trash2 size={18} />
+          <Trash2 className="md:size-[20px] size-[15px]" />
         </button>
         <button
           onClick={edit}
           className="p-1 flex-shrink-0 hover:text-indigo-500 transition-colors"
           aria-label="Edit todo"
         >
-          <pen />
+          <Pen className="md:size-[20px] size-[15px]" />
         </button>
       </div>
     </div>
