@@ -62,7 +62,7 @@ const ManageTodo = () => {
     >
       <div className="flex w-full h-screen items-center flex-col">
         <TodoForm />
-        <div className="w-[90%] md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 max-h-[700px] rounded-xl shadow-lg p-4 flex flex-col gap-2">
+        <div className="w-[95%] md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 max-h-[700px] rounded-xl shadow-lg p-4 flex flex-col gap-2">
           <p className="text-gray-700 font-medium text-lg mb-4 flex items-center gap-2">
             <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-md">
               {currentDate}
