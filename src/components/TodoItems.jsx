@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Trash2 } from "lucide-react";
+import { Trash2, pen } from "lucide-react";
 import { useTodo } from "../context";
 const TodoItems = ({ todo }) => {
   const { deleteTodo, updateTodo, toggleCompleted } = useTodo();
@@ -39,7 +39,7 @@ const TodoItems = ({ todo }) => {
           setTodoMsg(e.target.value);
         }}
       />
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
         <button
           className="hover:text-indigo-500 transition-colors p-1 flex-shrink-0"
           onClick={() => {
@@ -54,27 +54,7 @@ const TodoItems = ({ todo }) => {
           className="p-1 flex-shrink-0 hover:text-indigo-500 transition-colors"
           aria-label="Edit todo"
         >
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16.862 4.487L18.549 2.799C18.9007 2.44733 19.3777 2.24976 19.875 2.24976C20.3723 2.24976 20.8493 2.44733 21.201 2.799C21.5527 3.15068 21.7502 3.62766 21.7502 4.125C21.7502 4.62234 21.5527 5.09932 21.201 5.451L7.636 19.016C7.1743 19.4778 6.61501 19.832 5.995 20.054L3 21L3.946 18.005C4.168 17.385 4.522 16.826 4.984 16.364L16.862 4.487Z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M15 6L18 9"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <pen />
         </button>
       </div>
     </div>

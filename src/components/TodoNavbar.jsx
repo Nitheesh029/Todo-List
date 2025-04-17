@@ -50,7 +50,7 @@ function TodoNavbar() {
             {menus.map((menu) => (
               <a
                 href={menu.url}
-                className="cursor-pointer text-lg relative hover:text-indigo-700 transition-colors text-slate-600 font-semibold"
+                className="cursor-pointer text-sm relative hover:text-indigo-700 transition-colors text-slate-600 font-semibold"
                 key={menu.id}
                 onClick={() => {
                   setShowMenu(!showMenu);
