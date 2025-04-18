@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
 import { Trash2, Pen } from "lucide-react";
 import { useTodo } from "../context";
 const TodoItems = ({ todo }) => {
@@ -7,7 +6,7 @@ const TodoItems = ({ todo }) => {
 
   const [isEditable, setIsEditable] = useState(true);
   const [todoMsg, setTodoMsg] = useState(todo.todo);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(todo.completed);
 
   const edit = () => {
     if (!isCompleted) {
