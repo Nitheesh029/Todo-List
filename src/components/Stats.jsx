@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTodo } from "../context";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,8 +9,28 @@ import CircularProgressBar from "./CircularProgressBar";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Stats = () => {
+  // Get todos from context
   const { todos } = useTodo();
+  console.log("Todos from context:", todos); // Debug log to check if todos are received
+
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isUsingTestData, setIsUsingTestData] = useState(false);
+
+  // Use test data if todos from context is undefined or empty
+  const effectiveTodos = React.useMemo(() => {
+    if (!todos || todos.length === 0) {
+      setIsUsingTestData(true);
+      return [
+        { id: 1, title: "Test Todo 1", completed: true },
+        { id: 2, title: "Test Todo 2", completed: false },
+        { id: 3, title: "Test Todo 3", completed: true },
+        { id: 4, title: "Test Todo 4", completed: false },
+        { id: 5, title: "Test Todo 5", completed: false },
+      ];
+    }
+    setIsUsingTestData(false);
+    return todos;
+  }, [todos]);
 
   useGSAP(() => {
     gsap.from(".loading-animation", {
@@ -37,12 +57,20 @@ const Stats = () => {
     });
   }, []);
 
-  const completedCount = todos.filter((todo) => todo.completed).length;
-  const pendingCount = todos.filter((todo) => !todo.completed).length;
-  const totalCount = todos.length;
+  // Calculate statistics
+  const completedCount = effectiveTodos.filter((todo) => todo.completed).length;
+  const pendingCount = effectiveTodos.filter((todo) => !todo.completed).length;
+  const totalCount = effectiveTodos.length;
   const completedPercentage = totalCount
     ? Math.round((completedCount / totalCount) * 100)
     : 0;
+
+  console.log("Stats calculated:", {
+    completedCount,
+    pendingCount,
+    totalCount,
+    completedPercentage,
+  }); // Debug log for calculated stats
 
   const data = {
     labels: ["Completed", "Pending"],
@@ -128,6 +156,13 @@ const Stats = () => {
     return `${baseClass} bg-gradient-to-br from-white to-gray-50 border-t-4 border-gray-200`;
   };
 
+  // Warning for test data
+  useEffect(() => {
+    if (isUsingTestData) {
+      console.warn("Using test data because no todos were found in context!");
+    }
+  }, [isUsingTestData]);
+
   return (
     <div className="mx-auto w-[95%] max-w-4xl mt-8 sm:mt-12 md:mt-16 mb-16 sm:mb-20 bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 loading-animation">
       <div className="mb-8 text-center">
@@ -137,10 +172,15 @@ const Stats = () => {
         <p className="text-slate-500 text-sm sm:text-base">
           Track your productivity and task progress
         </p>
+        {isUsingTestData && (
+          <div className="mt-2 py-1 px-3 bg-yellow-100 text-yellow-800 rounded-md inline-block text-sm">
+            Using sample data for demonstration
+          </div>
+        )}
       </div>
 
-      <div className="grid grid-rows-1 sm:grid-cols-3 gap-4 mb-8 sm:mb-10">
-        <div className={getStatCardClass(0)}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 sm:mb-10">
+        <div className={getStatCardClass(0)} data-testid="completed-card">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
@@ -169,7 +209,7 @@ const Stats = () => {
           </div>
         </div>
 
-        <div className={getStatCardClass(1)}>
+        <div className={getStatCardClass(1)} data-testid="pending-card">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
@@ -198,7 +238,10 @@ const Stats = () => {
           </div>
         </div>
 
-        <div className="stat-card p-5 rounded-xl shadow-sm bg-gradient-to-br from-gray-50 to-gray-100 border-t-4 border-gray-300">
+        <div
+          className="stat-card p-5 rounded-xl shadow-sm bg-gradient-to-br from-gray-50 to-gray-100 border-t-4 border-gray-300"
+          data-testid="total-card"
+        >
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">

@@ -46,3 +46,8 @@
 .nav-link.active::after {
   width: 100%;
 }
+.stat-card {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
