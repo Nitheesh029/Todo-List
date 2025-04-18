@@ -18,6 +18,11 @@ function TodoNavbar() {
       title: "Pending",
       url: "pending",
     },
+    {
+      id: 4,
+      title: "Stats",
+      url: "stats",
+    },
   ];
   return (
     <div className="w-full py-4 shadow-xl bg-white flex items-center justify-evenly relative">
@@ -46,7 +51,7 @@ function TodoNavbar() {
           <i className="fa-solid fa-bars"></i>
         </button>
         {showMenu && (
-          <div className="flex gap-10 py-3 absolute right-0 top-[65px] bg-white w-full justify-center border-t-2 border-slate-300">
+          <div className="flex gap-5 py-3 absolute right-0 top-[65px] bg-white w-full justify-center border-t-2 border-slate-300">
             {menus.map((menu) => (
               <a
                 href={menu.url}

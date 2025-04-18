@@ -5,6 +5,7 @@ import TodoItems from "./TodoItems";
 import CompletedTodo from "./CompletedTodo";
 import PendingTodo from "./PendingTodo";
 import ManageTodo from "./ManageTodo";
+import Stats from "./Stats";
 export {
   TodoNavbar,
   Footer,
@@ -13,4 +14,5 @@ export {
   CompletedTodo,
   PendingTodo,
   ManageTodo,
+  Stats,
 };
