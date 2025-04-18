@@ -27,7 +27,8 @@ const ManageTodo = () => {
           </span>
           </p>
           {isTodoEmpty ? (
-              <p className="text-gray-500 text-center">Add Your Todo...</p>
+              <p className="text-gray-500 text-center">📝 It’s time to add your first task! Start by creating a new todo in this page.</p>
+
           ) : (
               ""
           )}

@@ -6,12 +6,13 @@ const PendingTodo = () => {
   const {todos} = useTodo();
   const [isTodoEmpty, setIsTodoEmpty] = useState(false);
   useEffect(() => {
-    setIsTodoEmpty(todos.length === 0);
+    const pendingTodos = todos.filter((todo)=> todo.completed === false)
+    setIsTodoEmpty(pendingTodos.length === 0);
   }, [todos]);
   return <div className="w-[95%] mx-auto md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 rounded-xl shadow-lg md:p-4 p-1.5 flex flex-col gap-4">
     <p className="text-3xl font-semibold text-slate-600">Pending Todos</p>
     {isTodoEmpty ? (
-        <p className="text-gray-500 text-center">Add your todo in Manage Todo page...</p>
+        <p className="text-gray-500 text-center">🎉 You're all caught up! No pending todos left. Add more tasks in the "Manage Todo" page.</p>
     ) : (
         ""
     )}
