@@ -20,7 +20,7 @@ const CompletedTodo = () => {
     });
   }, {});
   return (
-    <div className="w-[95%] mx-auto md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-10 rounded-xl shadow-lg md:p-4 p-1.5 flex flex-col gap-4 loading-animation">
+    <div className="w-[95%] mx-auto md:w-[500px] lg:w-[600px] xl:w-[700px] bg-white mt-20 rounded-xl shadow-lg md:p-4 p-1.5 flex flex-col gap-4 loading-animation">
       <p className="text-3xl font-semibold text-slate-600">Completed Todos</p>
       {isTodoEmpty ? (
         <p className="text-gray-500 text-center">
