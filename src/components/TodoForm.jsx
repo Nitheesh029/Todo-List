@@ -1,12 +1,12 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTodo } from "../context";
 const TodoForm = () => {
   const [todoMsg, setTodoMsg] = useState("");
   const { addTodo } = useTodo();
   useGSAP(() => {
-    gsap.from(".todoForm", {
+    gsap.from(".loading-animation", {
       y: 100,
       opacity: 0,
       duration: 0.75,
@@ -21,7 +21,7 @@ const TodoForm = () => {
     setTodoMsg("");
   };
   return (
-    <div className="mt-20 w-[90%] md:w-[600px] lg:w-[700px] xl:w-[800px] bg-white shadow-md rounded-xl flex gap-4 todoForm">
+    <div className="mt-20 w-[90%] md:w-[600px] lg:w-[700px] xl:w-[800px] bg-white shadow-md rounded-xl flex gap-4 loading-animation">
       <input
         type="text"
         className="w-full outline-none p-4 flex-1 rounded-xl"
